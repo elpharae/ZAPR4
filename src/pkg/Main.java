@@ -16,8 +16,6 @@ public class Main {
         System.out.print("Hádej číslo 1-100: ");
         int hadaneCislo = this.vstup.nextInt();
 
-        System.out.println(nahodneCislo);
-
         while (hadaneCislo != nahodneCislo && ++pocitej < pocetPokusu) {
             System.out.print(hadaneCislo < nahodneCislo ? "Zkus větší číslo: " : "Zkus menší číslo: "); ;
             hadaneCislo = this.vstup.nextInt();
@@ -31,22 +29,17 @@ public class Main {
     // ...v revolveru - hotovo
     // předělat hru na extrémnější variantu, kde se od druhého pokusu už netočí a jde se dál - hotovo
     private void russianRoulette(final int VELIKOST_BUBINKU) {
+        this.vstup = new Scanner(System.in);
         int pocitej = 0;
         boolean hrajePocitac = true;
         int poziceKulkyVBubinku = (int) (Math.random() * VELIKOST_BUBINKU);
         int poziceBubinku = (int) (Math.random() * VELIKOST_BUBINKU);
 
         System.out.println("Roztočení bubínku... Cvak!");
-
-
         System.out.println("--- Kolo " + ++pocitej + " ---");
         System.out.println("Hraje PC");
 
         while (poziceKulkyVBubinku != poziceBubinku) {
-            if (!hrajePocitac) {
-                System.out.print("Zmáčkni spoušť");
-                this.vstup.nextLine();
-            }
             System.out.println("Nic!");
             ++poziceBubinku;
 
@@ -55,6 +48,11 @@ public class Main {
 
             System.out.println("--- Kolo " + ++pocitej + " ---");
             System.out.println((hrajePocitac = !hrajePocitac) ? "Hraje PC" : "Hraješ ty");
+
+            if (!hrajePocitac) {
+                System.out.print("Zmáčkni spoušť");
+                this.vstup.nextLine();
+            }
         }
 
         System.out.println("Bum!");
@@ -63,7 +61,7 @@ public class Main {
     }
 
     private Main() {
-        //guessMyNum(15);
+        guessMyNum(15);
         russianRoulette(6);
     }
 
