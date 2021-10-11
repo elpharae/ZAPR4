@@ -30,11 +30,11 @@ public class Main {
     // předělat magickou konstantu 6 na pojmenovanou konstantu a zkoušet hru s různými počty otvorů
     // ...v revolveru - hotovo
     // předělat hru na extrémnější variantu, kde se od druhého pokusu už netočí a jde se dál - hotovo
-    private void russianRoulette(int velikostBubinku) {
+    private void russianRoulette(final int VELIKOST_BUBINKU) {
         int pocitej = 0;
         boolean hrajePocitac = true;
-        int poziceKulkyVBubinku = (int) (Math.random() * velikostBubinku);
-        int poziceBubinku = (int) (Math.random() * velikostBubinku);
+        int poziceKulkyVBubinku = (int) (Math.random() * VELIKOST_BUBINKU);
+        int poziceBubinku = (int) (Math.random() * VELIKOST_BUBINKU);
 
         System.out.println("Roztočení bubínku... Cvak!");
 
@@ -49,12 +49,12 @@ public class Main {
             }
             System.out.println("Nic!");
             ++poziceBubinku;
-            if (poziceBubinku < 0) poziceBubinku = velikostBubinku - 1;
-            if (poziceBubinku > velikostBubinku - 1) poziceBubinku = 0;
-            hrajePocitac = !hrajePocitac;
-            System.out.println("--- Kolo " + ++pocitej + " ---");
-            System.out.println(hrajePocitac ? "Hraje PC" : "Hraješ ty");
 
+            if (poziceBubinku < 0) poziceBubinku = VELIKOST_BUBINKU - 1;
+            if (poziceBubinku > VELIKOST_BUBINKU - 1) poziceBubinku = 0;
+
+            System.out.println("--- Kolo " + ++pocitej + " ---");
+            System.out.println((hrajePocitac = !hrajePocitac) ? "Hraje PC" : "Hraješ ty");
         }
 
         System.out.println("Bum!");
@@ -63,7 +63,7 @@ public class Main {
     }
 
     private Main() {
-        guessMyNum(15);
+        //guessMyNum(15);
         russianRoulette(6);
     }
 
